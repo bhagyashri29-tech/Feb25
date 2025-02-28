@@ -1,0 +1,243 @@
+Section 2: Java Programming with Conditional Statements 
+
+
+Question 1: Grade Classification  
+Write a program to classify student grades based on the following criteria: 
+ If the score is greater than or equal to 90, print "A" 
+ If the score is between 80 and 89, print "B" 
+ If the score is between 70 and 79, print "C" 
+ If the score is between 60 and 69, print "D" 
+ If the score is less than 60, print "F" 
+
+import java.util.Scanner; 
+
+public class GradeClassification {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the student's score: ");
+        int score = scanner.nextInt();
+
+        if (score >= 90) {
+            System.out.println("Grade: A");
+        } else if (score >= 80) {
+            System.out.println("Grade: B");
+        } else if (score >= 70) {
+            System.out.println("Grade: C");
+        } else if (score >= 60) {
+            System.out.println("Grade: D");
+        } else {
+            System.out.println("Grade: F");
+        }
+
+        scanner.close();
+    }
+}
+
+
+ Question 1: Days of the Week
+  
+Write a program that uses a nested switch statement to print out the day of the week based on an 
+integer input (1 for Monday, 2 for Tuesday, etc.). Additionally, within each day, print whether it 
+is a weekday or weekend
+
+
+import java.util.Scanner;
+public class DaysOfTheWeek {
+    public static void main(String[] args) {
+         Scanner scanner = new Scanner(System.in);
+             System.out.print("Enter a number (1-7) for the day of the week: ");
+                      int day = scanner.nextInt();
+
+        switch (day){
+            case 1:
+                   System.out.println("Monday: It is weekday");
+                     break;
+            case 2:
+                   System.out.println("Tuesday: It is weekday");
+                     break;
+            case 3:
+                   System.out.println("Wednesday: It is weekday");
+                     break;
+
+            case 4:
+                   System.out.println("Thursday:It is weekday");
+                     break;
+
+            case 5:
+                   System.out.println("Friday.It is weekday");
+                     break;
+
+            case 6:
+                   System.out.println("Saturday.It is weekend");
+                     break;
+
+            case 7:
+                   System.out.println("Sunday.It is weekend");
+                     break;
+            default:
+                System.out.println("Invalid input! Please enter a number between 1 and 7.");
+                  }
+  scanner.close();
+
+
+                  
+}
+}
+
+
+Question 3: Calculator
+  
+Write a program that acts as a simple calculator. It should accept two numbers and an operator 
+(+, -, *, /) as input. Use a switch statement to perform the appropriate operation. Use nested if
+else to check if division by zero is attempted and display an error message.
+
+import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter first number: ");
+        double num1 = scanner.nextDouble();
+
+        System.out.print("Enter an operator (+, -, *, /): ");
+
+        char operator = scanner.next().charAt(0);  
+        System.out.print("Enter second number: ");
+        double num2 = scanner.nextDouble();
+
+        double result;
+
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                System.out.println("Result: " + result);
+                break;
+
+            case '-':
+                result = num1 - num2;
+                System.out.println("Result: " + result);
+                break;
+
+            case '*':
+                result = num1 * num2;
+                System.out.println("Result: " + result);
+                break;
+
+            case '/':
+                if (num2 != 0) {
+                    result = num1 / num2;
+                    System.out.println("Result: " + result);
+                } else {
+                    System.out.println("Error: Division by zero is not allowed.");
+                }
+                break;
+            default:
+                System.out.println("Invalid operator! Please enter +, -, *, or /.");
+        }
+
+        scanner.close();  
+    }
+}
+
+
+
+Question 4: Discount Calculation
+  
+Write a program to calculate the discount based on the total purchase amount. Use the following 
+criteria: 
+  If the total purchase is greater than or equal to Rs.1000, apply a 20% discount. 
+  If the total purchase is between Rs.500 and Rs.999, apply a 10% discount. 
+  If the total purchase is less than Rs.500, apply a 5% discount. 
+Additionally, if the user has a membership card, increase the discount by 5%.
+
+
+import java.util.Scanner;
+
+public class DiscountCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+         System.out.print("Enter the total purchase amount (Rs.): ");
+        double purchaseAmount = scanner.nextDouble();
+
+          System.out.print("Do you have a membership card? (yes/no): ");
+        String membership = scanner.next().toLowerCase(); 
+        double discountPercentage;
+
+       if (purchaseAmount >= 1000) {
+            discountPercentage = 20;
+        } else if (purchaseAmount >= 500) {
+            discountPercentage = 10;
+        } else {
+            discountPercentage = 5;
+        }
+       if (membership.equals("yes")) {
+            discountPercentage += 5;
+        }
+
+        double discountAmount = (discountPercentage / 100) * purchaseAmount;
+        double finalPrice = purchaseAmount - discountAmount;
+
+      
+        System.out.println("\nTotal Purchase Amount: Rs. " + purchaseAmount);
+        System.out.println("Discount Applied: " + discountPercentage + "%");
+        System.out.println("Discount Amount: Rs. " + discountAmount);
+        System.out.println("Final Price After Discount: Rs. " + finalPrice);
+
+        scanner.close();
+    }
+}
+
+Question 5: Student Pass/Fail Status with Nested Switch 
+
+Write a program that determines whether a student passes or fails based on their grades in three 
+subjects. If the student scores more than 40 in all subjects, they pass. If the student fails in one or 
+more subjects, print the number of subjects they failed in.
+
+import java.util.Scanner;
+
+public class StudentPassFail {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+         System.out.print("Enter marks for Subject 1: ");
+        int subject1 = scanner.nextInt();
+
+        System.out.print("Enter marks for Subject 2: ");
+        int subject2 = scanner.nextInt();
+
+        System.out.print("Enter marks for Subject 3: ");
+
+        int subject3 = scanner.nextInt();
+
+        int failCount = 0;
+
+        if (subject1 < 40) failCount++;
+        if (subject2 < 40) failCount++;
+        if (subject3 < 40) failCount++;
+
+        switch (failCount) {
+            case 0:
+                System.out.println("Congratulations! You passed all subjects.");
+                break;
+            default:
+                System.out.println("You failed in " + failCount + " subject(s).");
+
+                switch (failCount) {
+                    case 1:
+                        System.out.println("You need to improve in one subject.");
+                        break;
+                    case 2:
+                        System.out.println("You need to work harder, failed in two subjects.");
+                        break;
+                    case 3:
+                        System.out.println("You failed all subjects. Consider retaking the exam.");
+                        break;
+                }
+        }
+
+        scanner.close();  
+     }
+}
+
