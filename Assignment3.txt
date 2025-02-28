@@ -1,0 +1,199 @@
+Snippet 1:
+public class InfiniteForLoop {
+ public static void main(String[] args) {
+ for (int i = 0; i < 10; i--) {
+ System.out.println(i);
+ }
+ }
+}
+// Error to investigate: Why does this loop run infinitely? How should the loop control variable be adjusted? 
+
+//The loop in our Java program runs infinitely because i starts at 0 and decreases in every iteration (i--).
+The condition i < 10 is always true because i is continuously decreasing (0, -1, -2, -3, ...).
+Since i never reaches or exceeds 10, the loop never stops. To control the loop variable we need to the update step to increase i instead of decreasing it. that is i++
+
+//Corrected code:
+public class InfiniteForLoop {
+ public static void main(String[] args) {
+ for (int i = 0; i < 10; i++) {
+ System.out.println(i);
+ }
+ }
+}
+
+Snippet 2:
+public class IncorrectWhileCondition {
+ public static void main(String[] args) {
+ int count = 5;
+ while (count = 0) {
+ System.out.println(count);
+ count--;
+ }
+ }
+}
+// Error to investigate: Why does the loop not execute as expected? What is the issue with the condition in the
+`while` loop?
+
+// while loop does not execute as expected because of a syntax error in the loop condition. Here Assignment operator (=) is used Instead of Comparison (==)
+count = 0 assigns 0 to count instead of checking if count is 0.
+This causes a compilation error because while expects a boolean condition, but count = 0 returns an integer (0).
+
+//we can fix it by replacing = with ==
+
+//Corrected Code:
+
+public class CorrectWhileCondition {
+ public static void main(String[] args) {
+ int count = 5;
+ while (count == 0) {
+ System.out.println(count);
+ count--;
+ }
+ }
+}
+
+//here the output of the above code is no output because the variable count is initialized to 5.
+The while loop condition is count == 0.
+Since count is not 0 (it starts at 5), the condition evaluates to false.
+The loop body never executes, so nothing is printed.
+
+
+Snippet 3:
+public class DoWhileIncorrectCondition {
+ public static void main(String[] args) {
+ int num = 0;
+ do {
+ System.out.println(num);
+ num++;
+ } while (num > 0);
+ }
+}
+// Error to investigate: Why does the loop only execute once? What is wrong with the loop condition in the `dowhile` loop?
+
+//This is actually an infinite loop. The error description suggests that the loop runs only once, but that's incorrect—the loop runs forever because num keeps increasing.
+
+//Corrected Code:
+
+public class DoWhileCorrectCondition {
+    public static void main(String[] args) {
+        int num = 0;
+        do {
+            System.out.println(num);
+            num++;
+        } while (num < 0);  // Ensures the loop runs only once
+    }
+}
+
+//here the loop will executes once then exits because num = 1, making num < 0 false.
+
+
+Snippet 4:
+
+public class OffByOneErrorForLoop {
+ public static void main(String[] args) {
+ for (int i = 1; i <= 10; i++) {
+ System.out.println(i);
+ }
+ // Expected: 10 iterations with numbers 1 to 10
+ // Actual: Prints numbers 1 to 10, but the task expected only 1 to 9
+ }
+}
+// Error to investigate: What is the issue with the loop boundaries? How should the loop be adjusted to meet the
+expected output? 
+
+// actually the above code prints the number from  1 to 10. but our task is to print the number from 1 to 9 for this we need to change i<10 it prints upto 9
+
+public class OffByOneErrorForLoop {
+ public static void main(String[] args) {
+ for (int i = 1; i <10; i++) {
+ System.out.println(i);
+ }
+  }
+}
+
+Snippet 5:
+public class WrongInitializationForLoop {
+ public static void main(String[] args) {
+ for (int i = 10; i >= 0; i++) {
+ System.out.println(i);
+ }
+ }
+}
+// Error to investigate: Why does this loop not print numbers in the expected order? What is the problem with the
+initialization and update statements in the `for` loop?
+
+//in this code for loop goes in infinite order.Here i = 10 (correct) i >= 0 (correct, ensures i runs down to 0).
+Update (i++) Incorrect – this increases i instead of decreasing it.
+i++ makes i go up (11, 12, 13, 14 ,15 ...), never reaching 0.
+Since i >= 0 is always true for increasing values, this creates an infinite loop.
+
+//we can overcome this issue by decreasing i
+//Corrected Code
+public class CorrectInitializationForLoop {
+ public static void main(String[] args) {
+ for (int i = 10; i >= 0; i--) {
+ System.out.println(i);
+ }
+ }
+}
+//here it prints 10 to 0 value
+
+Snippet 6:
+
+public class MisplacedForLoopBody {
+ public static void main(String[] args) {
+ for (int i = 0; i < 5; i++)
+ System.out.println(i);
+ System.out.println("Done");
+ }
+}
+// Error to investigate: Why does "Done" print only once, outside the loop? How should the loop body be enclosed to
+include all statements within the loop?
+
+//Here loop prints numbers 0 to 4, but "Done" prints only once after the loop finishes. The reason for this is incorrect indentation and missing braces {}.
+
+//Corrected Code:
+
+public class MisplacedForLoopBody {
+ public static void main(String[] args) {
+ for (int i = 0; i < 5; i++) {
+ System.out.println(i);
+ System.out.println("Done");}
+ }
+}
+//here "Done" prints after every number
+
+snippet 7:
+public class UninitializedWhileLoop {
+ public static void main(String[] args) {
+ int count;
+ while (count < 10) {
+ System.out.println(count);
+ count++;
+ }
+ }
+}
+// Error to investigate: Why does this code produce a compilation error? What needs to be done to initialize the loop
+variable properly? 
+
+//here code produces a compilation error because the variable count is not initialized before use.In Java, local variables (like count) must be initialized before use.
+The compiler does not automatically assign a default value to local variables.
+Since count is used in while (count < 10), but has no value, the program fails to compile.
+//this error can be overcome by intializing count before use in the loop
+
+//Corrected Code:
+public class InitializedWhileLoop {
+ public static void main(String[] args) {
+ int count=0;
+ while (count < 10) {
+ System.out.println(count);
+ count++;
+ }
+ }
+}
+//here it prints 0 to 9 numbers
+
+
+
+
+
